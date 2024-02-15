@@ -52,7 +52,7 @@ fn go_on_swamp(vehicle: &impl Amphibious){
 
 fn colorize_text(text: &str, font_size:i32,color_code: u8) -> String {
     // *println!("\x1b[92m{}\x1b[0m", error); //will output this
-    format!("\x1b[{};{}m{}\x1b[0m", font_size,color_code, text)
+    format!("\x1b[{};{}m{:?}\x1b[0m", font_size,color_code, text)
 }
 
 // !import features fille
@@ -68,87 +68,80 @@ fn main() {
 
     let error = "Error: Something went wrong!";
     println!("{}", colorize_text(error, 3,91));
-    println!("\x1b[1;92m{}\x1b[0m", error);
-
-    // Underlined green color for the error message
-    println!("\x1b[4;92m{}\x1b[0m", error);
-
-    // Bold and underlined green color for the error message
-    println!("\x1b[1;4;92m{}\x1b[0m", error);
-
-    // Simulating italic font using Unicode characters
+    println!("{}", colorize_text(error, 1,95));
+    println!("{}", colorize_text(error, 4,90));
+    println!("\x1b[1;4;94m{}\x1b[0m", error);
     println!("𝘛𝘩𝘪𝘴 𝘪𝘴 𝘢 𝘣𝘰𝘭𝘥 𝘦𝘳𝘳𝘰𝘳: {}", error);
-    
-    // Simulating monospace font using Unicode characters
     println!("𝙏𝙝𝙞𝙨 𝙞𝙨 𝙖 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚 𝙚𝙧𝙧𝙤𝙧: {}", error);
-
+    
     // let mut cli = vec![];
     // match get_cli_inputs(){
-    //     Ok(input)=>{
-    //         cli = input;
-    //     }
-    //     Err(err)=> {
-    //         println!("{:?}",err);
-    //         return;
-    //     }
-    // }
-    // for i in cli.iter(){
-    //     println!("{}",i);
-    // }
-
-    println!("Initial");
-    let vehicle = Train;
-    to_office(&vehicle);
-
-    let car = Toyota;
-    to_trip_dynamic(&car);
-    to_trip_static(&car);
-    
-    let hover = Hovercraft;
-    go_on_swamp(&hover);
-    // !call features_test function inside features file
-    // feature_test();
-    match fetch_data_from_api() {
-        Ok(data) => {
-            println!("Data from API:\n{:?}", data);
-        }
-        Err(err) => {
-            eprintln!("Error fetching data from API: {}", err);
-        }
-    }
-
-
-}
-
-// !Sample waintig function
-// use std::thread;
-// use std::time::{Duration};
-// use std::io::{self, Write};
-// use std::sync::atomic::{AtomicBool, Ordering};
-// use std::sync::Arc;
-// use std::process;
-
-// fn main() {
-    //     // Print colored error message
-    //     let error = "Error: Something went wrong!";
-    //     println!("\x1b[1;92m{}\x1b[0m", error);
-    
-    //     // Create a flag to signal the loading animation thread to terminate
-    //     let running = Arc::new(AtomicBool::new(true));
-    //     let running_clone = Arc::clone(&running);
-    
-    //     // Start the loading animation thread
-    //     let handle = thread::spawn(move || {
-        //         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
-        //         let loading_symbols = ["↱", "↴", "↲", "↱"];
-        //         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
-        //         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
-        //         let delay = Duration::from_millis(50);
-        //         while running_clone.load(Ordering::Relaxed) {
-//             for symbol in &loading_symbols {
-//                 print!("{}\r", symbol);
-//                 io::stdout().flush().unwrap();
-//                 thread::sleep(delay);
+        //     Ok(input)=>{
+            //         cli = input;
+            //     }
+            //     Err(err)=> {
+                //         println!("{:?}",err);
+                //         return;
+                //     }
+                // }
+                // for i in cli.iter(){
+                    //     println!("{}",i);
+                    // }
+                    
+                    println!("Initial");
+                    let vehicle = Train;
+                    to_office(&vehicle);
+                    
+                    let car = Toyota;
+                    to_trip_dynamic(&car);
+                    to_trip_static(&car);
+                    
+                    let hover = Hovercraft;
+                    go_on_swamp(&hover);
+                    // !call features_test function inside features file
+                    // feature_test();
+                    match fetch_data_from_api() {
+                        Ok(data) => {
+                            println!("Data from API:\n{:?}", data);
+                            println!("{}", colorize_text(&data.title, 4,93));
+                        }
+                        Err(err) => {
+                            eprintln!("Error fetching data from API: {}", err);
+                        }
+                    }
+                    
+                    
+                }
+                
+                // !Sample waintig function
+                // use std::thread;
+                // use std::time::{Duration};
+                // use std::io::{self, Write};
+                // use std::sync::atomic::{AtomicBool, Ordering};
+                // use std::sync::Arc;
+                // use std::process;
+                
+                // fn main() {
+                    //     // Print colored error message
+                    //     let error = "Error: Something went wrong!";
+                    //     println!("\x1b[1;92m{}\x1b[0m", error);
+                    
+                    //     // Create a flag to signal the loading animation thread to terminate
+                    //     let running = Arc::new(AtomicBool::new(true));
+                    //     let running_clone = Arc::clone(&running);
+                    
+                    //     // Start the loading animation thread
+                    //     let handle = thread::spawn(move || {
+                        //         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
+                        //         let loading_symbols = ["↱", "↴", "↲", "↱"];
+                        //         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
+                        //         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
+                        //         let delay = Duration::from_millis(50);
+                        //         while running_clone.load(Ordering::Relaxed) {
+                            //             for symbol in &loading_symbols {
+                                //                 print!("{}\r", symbol);
+                                //                 io::stdout().flush().unwrap();
+                                //                 thread::sleep(delay);
 //             }
 //         }
 //     });
