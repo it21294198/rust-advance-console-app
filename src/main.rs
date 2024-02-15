@@ -61,7 +61,7 @@ fn colorize_text(text: &str, font_size:i32,color_code: u8) -> String {
 mod features;
 
 // use features::feature_test;
-use features::{feature_test,get_cli_inputs};
+use features::{feature_test,get_cli_inputs,fetch_data_from_api};
 
 
 fn main() {
@@ -108,6 +108,15 @@ fn main() {
     go_on_swamp(&hover);
     // !call features_test function inside features file
     // feature_test();
+    match fetch_data_from_api() {
+        Ok(data) => {
+            println!("Data from API:\n{:?}", data);
+        }
+        Err(err) => {
+            eprintln!("Error fetching data from API: {}", err);
+        }
+    }
+
 
 }
 
