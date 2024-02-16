@@ -66,10 +66,10 @@ use features::{feature_test,get_cli_inputs,fetch_data_from_api};
 
 fn main() {
 
-    let error = "Error: Something went wrong!";
-    println!("{}", colorize_text(error, 3,91));
-    println!("{}", colorize_text(error, 1,95));
-    println!("{}", colorize_text(error, 4,90));
+    let error = String::from("Error: Something went wrong!");
+    println!("{}", colorize_text(&error, 3,91));
+    println!("{}", colorize_text(&error, 1,95));
+    println!("{}", colorize_text(&error, 4,90));
     println!("\x1b[1;4;94m{}\x1b[0m", error);
     println!("𝘛𝘩𝘪𝘴 𝘪𝘴 𝘢 𝘣𝘰𝘭𝘥 𝘦𝘳𝘳𝘰𝘳: {}", error);
     println!("𝙏𝙝𝙞𝙨 𝙞𝙨 𝙖 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚 𝙚𝙧𝙧𝙤𝙧: {}", error);
