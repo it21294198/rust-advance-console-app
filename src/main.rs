@@ -77,71 +77,70 @@ fn main() {
     // let mut cli = vec![];
     // match get_cli_inputs(){
         //     Ok(input)=>{
-            //         cli = input;
-            //     }
-            //     Err(err)=> {
-                //         println!("{:?}",err);
-                //         return;
-                //     }
-                // }
-                // for i in cli.iter(){
-                    //     println!("{}",i);
-                    // }
+        //         cli = input;
+        //     }
+        //     Err(err)=> {
+        //         println!("{:?}",err);
+        //         return;
+        //     }
+        // }
+        // for i in cli.iter(){
+            //     println!("{}",i);
+            // }
+    println!("Initial");
+    let vehicle = Train;
+    to_office(&vehicle);
                     
-                    println!("Initial");
-                    let vehicle = Train;
-                    to_office(&vehicle);
+    let car = Toyota;
+    to_trip_dynamic(&car);
+    to_trip_static(&car);
                     
-                    let car = Toyota;
-                    to_trip_dynamic(&car);
-                    to_trip_static(&car);
-                    
-                    let hover = Hovercraft;
-                    go_on_swamp(&hover);
-                    // !call features_test function inside features file
-                    // feature_test();
-                    match fetch_data_from_api() {
-                        Ok(data) => {
-                            println!("Data from API:\n{:?}", data);
-                            println!("{}", colorize_text(&data.title, 4,93));
-                        }
-                        Err(err) => {
-                            eprintln!("Error fetching data from API: {}", err);
-                        }
-                    }
+    let hover = Hovercraft;
+    go_on_swamp(&hover);
+    // !call features_test function inside features file
+    // feature_test();
+    match fetch_data_from_api() {
+        Ok(data) => {
+            println!("Data from API:\n{:?}", data);
+            println!("{}", colorize_text(&data.title, 4,93));
+        }
+        Err(err) => {
+            eprintln!("Error fetching data from API: {}", err);
+        }
+    }
                     
                     
-                }
+}
                 
-                // !Sample waintig function
-                // use std::thread;
-                // use std::time::{Duration};
-                // use std::io::{self, Write};
-                // use std::sync::atomic::{AtomicBool, Ordering};
-                // use std::sync::Arc;
-                // use std::process;
+// !Sample waintig function
+// use std::thread;
+// use std::time::{Duration};
+// use std::io::{self, Write};
+// use std::sync::atomic::{AtomicBool, Ordering};
+// use std::sync::Arc;
+// use std::process;
                 
-                // fn main() {
-                    //     // Print colored error message
-                    //     let error = "Error: Something went wrong!";
-                    //     println!("\x1b[1;92m{}\x1b[0m", error);
+// fn main() {
+    //     // Print colored error message
+    //     let error = "Error: Something went wrong!";
+    //     println!("\x1b[1;92m{}\x1b[0m", error);
                     
-                    //     // Create a flag to signal the loading animation thread to terminate
-                    //     let running = Arc::new(AtomicBool::new(true));
-                    //     let running_clone = Arc::clone(&running);
+    //     // Create a flag to signal the loading animation thread to terminate
+    //     let running = Arc::new(AtomicBool::new(true));
+    //     let running_clone = Arc::clone(&running);
                     
-                    //     // Start the loading animation thread
-                    //     let handle = thread::spawn(move || {
-                        //         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
-                        //         let loading_symbols = ["↱", "↴", "↲", "↱"];
-                        //         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
-                        //         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
-                        //         let delay = Duration::from_millis(50);
-                        //         while running_clone.load(Ordering::Relaxed) {
-                            //             for symbol in &loading_symbols {
-                                //                 print!("{}\r", symbol);
-                                //                 io::stdout().flush().unwrap();
-                                //                 thread::sleep(delay);
+    //     // Start the loading animation thread
+    //     let handle = thread::spawn(move || {
+        //         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
+        //         let loading_symbols = ["↱", "↴", "↲", "↱"];
+        //         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
+        //         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
+        //         let delay = Duration::from_millis(50);
+        //         while running_clone.load(Ordering::Relaxed) {
+        //             for symbol in &loading_symbols {
+            //                 print!("{}\r", symbol);
+            //                 io::stdout().flush().unwrap();
+            //                 thread::sleep(delay);
 //             }
 //         }
 //     });
