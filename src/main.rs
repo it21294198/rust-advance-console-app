@@ -2,11 +2,11 @@
 // Suppress the Warnings: ⬆︎
 
 // !trait is similer to Interfaces
-trait  Car {
+trait Car {
     fn drive(&self);
 }
-trait  Boat {
-    fn paddle(&self){
+trait Boat {
+    fn paddle(&self) {
         println!("Boat can be paddle");
     }
 }
@@ -17,7 +17,7 @@ impl Car for Toyota {
     }
 }
 
-trait Amphibious:Car+Boat {}
+trait Amphibious: Car + Boat {}
 struct Hovercraft;
 impl Amphibious for Hovercraft {}
 impl Car for Hovercraft {
@@ -29,30 +29,30 @@ impl Boat for Hovercraft {}
 
 struct Train;
 impl Train {
-    fn ride(&self){
+    fn ride(&self) {
         println!("Train is ride");
     }
 }
 
-fn to_office(vehicle: &Train){
+fn to_office(vehicle: &Train) {
     vehicle.ride();
 }
-fn to_trip_dynamic(vehicle:&dyn Car){
+fn to_trip_dynamic(vehicle: &dyn Car) {
     vehicle.drive();
 }
 // ! better to use impl insted of dyn
-fn to_trip_static(vehicle:&impl Car){
+fn to_trip_static(vehicle: &impl Car) {
     vehicle.drive();
 }
 
-fn go_on_swamp(vehicle: &impl Amphibious){
+fn go_on_swamp(vehicle: &impl Amphibious) {
     vehicle.drive();
     vehicle.paddle();
 }
 
-fn colorize_text(text: &str, font_size:i32,color_code: u8) -> String {
+fn colorize_text(text: &str, font_size: i32, color_code: u8) -> String {
     // *println!("\x1b[92m{}\x1b[0m", error); //will output this
-    format!("\x1b[{};{}m{:?}\x1b[0m", font_size,color_code, text)
+    format!("\x1b[{};{}m{:?}\x1b[0m", font_size, color_code, text)
 }
 
 // !import features fille
@@ -61,40 +61,38 @@ fn colorize_text(text: &str, font_size:i32,color_code: u8) -> String {
 mod features;
 
 // use features::feature_test;
-use features::{feature_test,get_cli_inputs,fetch_data_from_api};
-
+use features::{feature_test, fetch_data_from_api, get_cli_inputs};
 
 fn main() {
-
     let error = String::from("Error: Something went wrong!");
-    println!("{}", colorize_text(&error, 3,91));
-    println!("{}", colorize_text(&error, 1,95));
-    println!("{}", colorize_text(&error, 4,90));
+    println!("{}", colorize_text(&error, 3, 91));
+    println!("{}", colorize_text(&error, 1, 95));
+    println!("{}", colorize_text(&error, 4, 90));
     println!("\x1b[1;4;94m{}\x1b[0m", error);
     println!("𝘛𝘩𝘪𝘴 𝘪𝘴 𝘢 𝘣𝘰𝘭𝘥 𝘦𝘳𝘳𝘰𝘳: {}", error);
     println!("𝙏𝙝𝙞𝙨 𝙞𝙨 𝙖 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚 𝙚𝙧𝙧𝙤𝙧: {}", error);
-    
+
     // let mut cli = vec![];
     // match get_cli_inputs(){
-        //     Ok(input)=>{
-        //         cli = input;
-        //     }
-        //     Err(err)=> {
-        //         println!("{:?}",err);
-        //         return;
-        //     }
-        // }
-        // for i in cli.iter(){
-            //     println!("{}",i);
-            // }
+    //     Ok(input)=>{
+    //         cli = input;
+    //     }
+    //     Err(err)=> {
+    //         println!("{:?}",err);
+    //         return;
+    //     }
+    // }
+    // for i in cli.iter(){
+    //     println!("{}",i);
+    // }
     println!("Initial");
     let vehicle = Train;
     to_office(&vehicle);
-                    
+
     let car = Toyota;
     to_trip_dynamic(&car);
     to_trip_static(&car);
-                    
+
     let hover = Hovercraft;
     go_on_swamp(&hover);
     // !call features_test function inside features file
@@ -109,10 +107,8 @@ fn main() {
             eprintln!("Error fetching data from API: {}", err);
         }
     }
-                    
-                    
 }
-                
+
 // !Sample waintig function
 // use std::thread;
 // use std::time::{Duration};
@@ -120,28 +116,28 @@ fn main() {
 // use std::sync::atomic::{AtomicBool, Ordering};
 // use std::sync::Arc;
 // use std::process;
-                
+
 // fn main() {
-    //     // Print colored error message
-    //     let error = "Error: Something went wrong!";
-    //     println!("\x1b[1;92m{}\x1b[0m", error);
-                    
-    //     // Create a flag to signal the loading animation thread to terminate
-    //     let running = Arc::new(AtomicBool::new(true));
-    //     let running_clone = Arc::clone(&running);
-                    
-    //     // Start the loading animation thread
-    //     let handle = thread::spawn(move || {
-        //         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
-        //         let loading_symbols = ["↱", "↴", "↲", "↱"];
-        //         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
-        //         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
-        //         let delay = Duration::from_millis(50);
-        //         while running_clone.load(Ordering::Relaxed) {
-        //             for symbol in &loading_symbols {
-            //                 print!("{}\r", symbol);
-            //                 io::stdout().flush().unwrap();
-            //                 thread::sleep(delay);
+//     // Print colored error message
+//     let error = "Error: Something went wrong!";
+//     println!("\x1b[1;92m{}\x1b[0m", error);
+
+//     // Create a flag to signal the loading animation thread to terminate
+//     let running = Arc::new(AtomicBool::new(true));
+//     let running_clone = Arc::clone(&running);
+
+//     // Start the loading animation thread
+//     let handle = thread::spawn(move || {
+//         let loading_symbols = ["▉▉▉▉▉", "▊▊▊▊▊", "▋▋▋▋▋", "▌▌▌▌▌", "▍▍▍▍▍", "▎▎▎▎▎", "▏▏▏▏▏"];
+//         let loading_symbols = ["↱", "↴", "↲", "↱"];
+//         let loading_symbols = ["⤿", "⤻", "⤺", "↶"];
+//         let loading_symbols = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
+//         let delay = Duration::from_millis(50);
+//         while running_clone.load(Ordering::Relaxed) {
+//             for symbol in &loading_symbols {
+//                 print!("{}\r", symbol);
+//                 io::stdout().flush().unwrap();
+//                 thread::sleep(delay);
 //             }
 //         }
 //     });
@@ -245,7 +241,7 @@ fn main() {
 
 //     // Stop the loading animation
 //     running.store(0, Ordering::Relaxed);
-    
+
 //     // Join the loading animation thread
 //     handle.join().unwrap();
 // }
