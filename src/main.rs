@@ -101,8 +101,9 @@ fn main() {
     // feature_test();
     match fetch_data_from_api() {
         Ok(data) => {
-            println!("Data from API:\n{:?}", data);
-            println!("{}", colorize_text(&data.title, 4,93));
+            // println!("Data from API:\n{:?}", data);
+            // println!("{}", colorize_text(&data.title, 4,93));
+            dbg!(data);
         }
         Err(err) => {
             eprintln!("Error fetching data from API: {}", err);
