@@ -55,6 +55,36 @@ fn colorize_text(text: &str, font_size: i32, color_code: u8) -> String {
     format!("\x1b[{};{}m{:?}\x1b[0m", font_size, color_code, text)
 }
 
+pub trait Summary {
+    fn summary_size(&self)->String;
+}
+
+pub struct TextArea {
+    pub tid:i32,
+    pub title:String,
+    pub body:String
+}
+
+
+pub struct Artical {
+    pub aid:i32,
+    pub uname:String,
+    pub date:i32,
+    pub image:String,
+    pub text:String
+}
+
+impl Summary for TextArea {
+    fn summary_size(&self)->String {
+        format!("{} of {}",self.tid,self.title)
+    }
+}
+impl Summary for Artical {
+    fn summary_size(&self)->String {
+        format!("{} of {}",self.aid,self.text)
+    }
+}
+
 // !import features fille
 // --import-->>> pub mod features; ---use-->>> features::feature_test();
 // or
@@ -62,6 +92,7 @@ mod features;
 
 // use features::feature_test;
 use features::{feature_test, fetch_data_from_api, get_cli_inputs};
+use std::process::Command;
 
 fn main() {
     let error = String::from("Error: Something went wrong!");
@@ -70,7 +101,30 @@ fn main() {
     println!("{}", colorize_text(&error, 4, 90));
     println!("\x1b[1;4;94m{}\x1b[0m", error);
     println!("𝘛𝘩𝘪𝘴 𝘪𝘴 𝘢 𝘣𝘰𝘭𝘥 𝘦𝘳𝘳𝘰𝘳: {}", error);
-    println!("𝙏𝙝𝙞𝙨 𝙞𝙨 𝙖 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚 𝙚𝙧𝙧𝙤𝙧: {}", error);
+    println!("𝙏𝙝𝙞𝙨 𝙞𝙨 𝙖 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚 𝙚𝙧𝙧𝙤𝙧: {}\n", error);
+
+    // !Executes the echo "Hello world" command using Command::new("echo").arg("Hello world").output().
+    let output = Command::new("echo")
+    .arg("Hello world")
+    .output()
+    .expect("Failed to execute command");
+
+    // Print the captured output
+    println!("Command output: {:?}", output);
+
+    // Convert output bytes to string
+    if let Ok(stdout) = String::from_utf8(output.stdout) {
+        println!("Output: {}", stdout);
+    } else {
+        eprintln!("Failed to convert stdout to string");
+    }
+
+    // Convert error bytes to string
+    if let Ok(stderr) = String::from_utf8(output.stderr) {
+        println!("Error: {}", stderr);
+    } else {
+        eprintln!("Failed to convert stderr to string");
+    }
 
     // let mut cli = vec![];
     // match get_cli_inputs(){
